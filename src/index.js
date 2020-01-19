@@ -108,7 +108,7 @@ class MongooseStore {
 
   del(key, options, fn) {
     try {
-      return this.model.remove({ _id: key }).then(() => this.result(fn));
+      return this.model.deleteOne({ _id: key }).then(() => this.result(fn));
     } catch (e) {
       this.result(fn, e);
     }
@@ -120,7 +120,7 @@ class MongooseStore {
         fn = key;
         key = null;
       }
-      return this.model.remove({}).then(() => {
+      return this.model.deleteMany({}).then(() => {
         if (fn) {
           fn();
         }
