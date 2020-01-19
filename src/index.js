@@ -68,7 +68,7 @@ class MongooseStore {
 
   async get(key, options, fn) {
     try {
-      let record = this.model.findOne({ _id: key });
+      let record = await this.model.findOne({ _id: key });
       if (!record) {
         return this.result(fn);
       }
