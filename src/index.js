@@ -63,25 +63,20 @@ class MongooseStore {
     if (fn) {
       fn(error, result);
     }
+    return result;
   }
 
-  get(key, options, fn) {
+  async get(key, options, fn) {
     try {
-      return this.model
-        .findOne({ _id: key })
-        .then(record => {
-          if (!record) {
-            return this.result(fn);
-          }
-
-          // this is necessary, since mongoose autoclean is not accurate
-          if (record.exp && record.exp < new Date()) {
-            return this.del(key, null, fn);
-          } else {
-            return this.result(fn, null, record.val);
-          }
-        })
-        .catch(e => this.result(fn, e));
+      let record = this.model.findOne({ _id: key });
+      if (!record) {
+        return this.result(fn);
+      }
+      // this is necessary, since mongoose autoclean is not accurate
+      if (record.exp && record.exp < new Date()) {
+        return this.del(key, null, fn);
+      }
+      return this.result(fn, null, record.val);
     } catch (e) {
       this.result(fn, e);
     }
