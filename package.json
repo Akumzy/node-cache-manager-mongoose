@@ -1,6 +1,6 @@
 {
   "name": "cache-manager-mongoose",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "mongoose store for node-cache-manager",
   "main": "src/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "license": "WTFPL",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akumzy/node-cache-manager-mongoose.git"
+    "url": "https://github.com/Akumzy/node-cache-manager-mongoose.git"
   },
   "devDependencies": {
     "cache-manager": "^2.2.0",
